@@ -1,10 +1,17 @@
-name: test workflow
+name: Docker image building 
 on:
     - push
 
 jobs:
-    build-image:
+    build-and-push-image:
         runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            packages: write
+            attestations: write
+            id-token: write
+
         steps:
             -
                 uses: benjlevesque/short-sha@v3.0
