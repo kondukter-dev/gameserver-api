@@ -1,0 +1,6 @@
+aio-pika
+asyncpg
+fastapi[standard]
+kubernetes
+pydantic-settings
+sqlmodel
