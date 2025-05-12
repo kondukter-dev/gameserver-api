@@ -11,6 +11,7 @@ spec:
       labels:
         app: gameserver-api
     spec:
+      # https://documentation.commvault.com/11.20/create_service_account_for_kubernetes.html
       serviceAccount: admin
       containers:
       - name: gameserver-api
