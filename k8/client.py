@@ -10,7 +10,7 @@ class K8sClient:
 
         # get serviceAccount
         v1 = client.CoreV1Api()
-        namespace = open("/var/run/secrets/kubernetes.io/serviceaccount/namespace").read().strip()
+        namespace = "default"
         pod_name = os.environ.get("HOSTNAME")
 
         pod = v1.read_namespaced_pod(name=pod_name, namespace=namespace)

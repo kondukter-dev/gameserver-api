@@ -18,7 +18,7 @@ async def lifespan(_: FastAPI):
     db_cl.connect(str(config.DB_URI))
 
     # load kubernetes client
-    # k8_cl.load_service_account()
+    k8_cl.load_service_account()
 
     # create tables
     await db_cl.init_db()

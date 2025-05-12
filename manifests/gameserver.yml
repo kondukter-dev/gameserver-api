@@ -15,6 +15,7 @@ spec:
       containers:
       - name: gameserver-api
         image: ghcr.io/kondukter-dev/gameserver-api:master
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "128Mi"
