@@ -44,7 +44,9 @@ else:
 
 # from .routes.listings import listings_router
 from .routes.gameservers import gameservers_router
+from .routes.ping import healthcheck_router
 
 
 # app.include_router(listings_router, prefix="/listings")
 app.include_router(gameservers_router, prefix="/gameservers")
+app.include_router(healthcheck_router, prefix="/healthcheck")

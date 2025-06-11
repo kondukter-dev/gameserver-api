@@ -44,3 +44,27 @@ spec:
           value: "postgresql+asyncpg://postgres:$(DB_PASS)@db-postgresql.default.svc.cluster.local/postgres"
         # - name: RABBIT_URI
         #   value: "amqp://user:$(RABBIT_PASS)@rmq-rabbitmq.default.svc.cluster.local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gameserver-api
+spec:
+  selector:
+    app: gameserver-api
+  ports:
+  - port: 5000
+    targetPort: 5000
+    name: http
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gameserver-api-rule
+spec:
+  routes:
+    - match: PathPrefix(`/gameservers`)
+      kind: Rule
+      services:
+        - name: gameserver-api
+          port: http
