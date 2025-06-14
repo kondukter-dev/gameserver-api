@@ -1,3 +1,4 @@
+import os
 from kubernetes import client, config
 from kubernetes.client import V1ObjectMeta
 # configmap
@@ -21,8 +22,13 @@ class K8sClient:
     def load_service_account(self):
         # config.load_incluster_config()
 
-        contexts, active_context = config.list_kube_config_contexts()
-        config.load_kube_config(context=active_context["name"])
+        # Detect if running in cluster
+        if os.environ.get("KUBERNETES_SERVICE_HOST"):
+            config.load_incluster_config()
+        else:
+            contexts, active_context = config.list_kube_config_contexts()
+            config.load_kube_config(context=active_context["name"])
+
 
         # get serviceAccount
         self.v1_api = client.CoreV1Api()

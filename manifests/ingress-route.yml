@@ -1,0 +1,11 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gameserver-api-rule
+spec:
+  routes:
+    - match: PathPrefix(`/gameservers`)
+      kind: Rule
+      services:
+        - name: gameserver-api
+          port: http
