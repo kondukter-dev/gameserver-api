@@ -304,7 +304,7 @@ class K8sClient:
         self.crd_api.create_namespaced_custom_object(
             group=group,
             version=version,
-            namespace=self.namespace,
+            namespace="default",
             plural=plural,
             body=body
         )
@@ -337,7 +337,7 @@ class K8sClient:
         self.crd_api.delete_namespaced_custom_object(
             group="traefik.io",
             version="v1alpha1",
-            namespace=self.namespace,
+            namespace="default",
             plural="ingressroutetcps",
             name=f"gameserver-{server_id}-route"
         )
